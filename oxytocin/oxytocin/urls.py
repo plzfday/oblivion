@@ -20,7 +20,7 @@ from .views import create_user, login_view, logout_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/create_user", create_user),
+    path("api/signup", create_user),
     path("api/login", login_view),
     path("api/logout", logout_view)
 ]
