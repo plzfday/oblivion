@@ -18,6 +18,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from '@mui/material';
+import LoginSystemButton from "@/app/components/LoginSystemButton";
 
 const drawerWidth = 240;
 
@@ -75,6 +76,7 @@ interface Props {
   children?: React.ReactNode;
   sideList?: string[];
   links?: string[];
+  isLoggedIn: boolean;
 }
 
 const basicLinks = {
@@ -87,6 +89,7 @@ export default function PersistentDrawerLeft({
   sideList,
   children,
   links,
+  isLoggedIn
 }: Props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -103,7 +106,7 @@ export default function PersistentDrawerLeft({
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <Toolbar>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -116,6 +119,11 @@ export default function PersistentDrawerLeft({
           <Typography variant='h6' noWrap component='div'>
             {header}
           </Typography>
+          {isLoggedIn ? <LoginSystemButton text='Log Out'/> :
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
+                <LoginSystemButton text='Register'/>
+                <LoginSystemButton text='Log In'/>
+              </Box>}
         </Toolbar>
       </AppBar>
       <Drawer
