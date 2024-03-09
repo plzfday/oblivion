@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "oblivion"
+version = "0.1.0"
+description = ""
+authors = ["Dongyeon Park <26868715+plzfday@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
