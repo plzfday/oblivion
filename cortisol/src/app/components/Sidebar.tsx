@@ -72,9 +72,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 interface Props {
   header: string;
   children?: React.ReactNode;
+  sideList : string[];
 }
 
-export default function PersistentDrawerLeft({ header, children }: Props) {
+export default function PersistentDrawerLeft({ header, sideList, children }: Props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -129,15 +130,13 @@ export default function PersistentDrawerLeft({ header, children }: Props) {
         </DrawerHeader>
         <Divider />
         <List>
-          {['2024-02-01', '2024-01-31', '2024-01-30', '2024-01-29'].map(
-            (text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            )
-          )}
+          {sideList.map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </Drawer>
       <Main open={open}>
