@@ -1,7 +1,4 @@
 import Image from "next/image";
-import Advertisement from "./components/Advertisement";
-import PersistentDrawerLeft from "./components/Sidebar";
-
 
 export default function Home() {
   return (
@@ -111,8 +108,6 @@ export default function Home() {
           </p>
         </a>
       </div>
-      <Advertisement title="Ads" content="some ads" />
-      <PersistentDrawerLeft />
     </main>
   );
 }
