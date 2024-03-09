@@ -1,9 +1,7 @@
-"use client";
+import Sidebar from "../components/Sidebar";
 
-import Navigation from "../components/Navigation";
-
-
-
-export default function page() {
-    return(<Navigation/>);
-};
+export default function Note() {
+  return (
+    <Sidebar header={'Today I Learned'}></Sidebar>
+  );
+}
