@@ -17,6 +17,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import { Link } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -72,10 +73,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 interface Props {
   header: string;
   children?: React.ReactNode;
-  sideList : string[];
+  sideList: string[];
+  links: string[];
 }
 
-export default function PersistentDrawerLeft({ header, sideList, children }: Props) {
+export default function PersistentDrawerLeft({
+  header,
+  sideList,
+  children,
+  links,
+}: Props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -133,7 +140,14 @@ export default function PersistentDrawerLeft({ header, sideList, children }: Pro
           {sideList.map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
-                <ListItemText primary={text} />
+                <Link
+                  href={links[index]}
+                  underline='none'
+                  color='inherit'
+                  width='100%'
+                >
+                  {text}
+                </Link>
               </ListItemButton>
             </ListItem>
           ))}
@@ -146,3 +160,9 @@ export default function PersistentDrawerLeft({ header, sideList, children }: Pro
     </Box>
   );
 }
+
+PersistentDrawerLeft.defaultProps = {
+  children: null,
+  sideList: ['Home', 'Notes', 'Flashcards', 'Profile'],
+  links: ['/', '/notes', '/flashcards', '/profile'],
+};
