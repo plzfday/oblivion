@@ -3,7 +3,7 @@ import Sidebar from '../components/Sidebar';
 
 export default function Note() {
   return (
-    <Sidebar header={'User Profile'}>
+    <Sidebar header={'User Profile'} sideList={['Home', 'Notes', 'Flashcards', 'Profile']}>
         <DateCalendarValue/>
     </Sidebar>
   );
