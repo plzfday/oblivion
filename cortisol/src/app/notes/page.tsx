@@ -1,9 +1,20 @@
+'use client';
+
 import { Box, TextField } from '@mui/material';
 import Sidebar from '../components/Sidebar';
 import Navigation from '../components/Navigation';
 import Divider from '@mui/material/Divider';
+import dynamic from 'next/dynamic';
+import { Suspense, useRef } from 'react';
+import { MDXEditorMethods } from '@mdxeditor/editor';
+
+const EditorComp = dynamic(() => import('../components/Editor'), {
+  ssr: false,
+});
 
 export default function Note() {
+  const ref = useRef<MDXEditorMethods>(null);
+
   return (
     <Sidebar header={'Today I Learned'}>
       <Navigation />
@@ -24,15 +35,9 @@ export default function Note() {
             margin='normal'
             required
           />
-          <TextField
-            label='Content'
-            name='content'
-            multiline
-            fullWidth
-            rows={4}
-            margin='normal'
-            required
-          />
+          <Suspense fallback={null}>
+            <EditorComp markdown={''} editorRef={ref} />
+          </Suspense>
           <TextField
             label='Summary (optional)'
             name='summary'
