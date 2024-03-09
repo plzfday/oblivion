@@ -73,9 +73,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 interface Props {
   header: string;
   children?: React.ReactNode;
-  sideList: string[];
-  links: string[];
+  sideList?: string[];
+  links?: string[];
 }
+
+const basicLinks = {
+  sideList: ['Home', 'Notes', 'Flashcards', 'Profile'],
+  links: ['/', '/notes', '/flashcards', '/profile'],
+};
 
 export default function PersistentDrawerLeft({
   header,
@@ -137,21 +142,28 @@ export default function PersistentDrawerLeft({
         </DrawerHeader>
         <Divider />
         <List>
-          {sideList.map((text, index) => (
+          {basicLinks.sideList.map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <Link
-                  href={links[index]}
-                  underline='none'
-                  color='inherit'
-                  width='100%'
-                >
-                  {text}
-                </Link>
+              <ListItemButton component='a' href={basicLinks.links[index]}>
+                <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
+        {sideList && links && (
+          <>
+            <Divider />
+            <List>
+              {sideList.map((text, index) => (
+                <ListItem key={text} disablePadding>
+                  <ListItemButton component='a' href={links[index]}>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </>
+        )}
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
@@ -160,9 +172,3 @@ export default function PersistentDrawerLeft({
     </Box>
   );
 }
-
-PersistentDrawerLeft.defaultProps = {
-  children: null,
-  sideList: ['Home', 'Notes', 'Flashcards', 'Profile'],
-  links: ['/', '/notes', '/flashcards', '/profile'],
-};
