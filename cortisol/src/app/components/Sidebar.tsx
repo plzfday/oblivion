@@ -144,15 +144,8 @@ export default function PersistentDrawerLeft({
         <List>
           {basicLinks.sideList.map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <Link
-                  href={basicLinks.links[index]}
-                  underline='none'
-                  color='inherit'
-                  width='100%'
-                >
-                  {text}
-                </Link>
+              <ListItemButton component='a' href={basicLinks.links[index]}>
+                <ListItemText primary={text} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -163,15 +156,8 @@ export default function PersistentDrawerLeft({
             <List>
               {sideList.map((text, index) => (
                 <ListItem key={text} disablePadding>
-                  <ListItemButton>
-                    <Link
-                      href={links[index]}
-                      underline='none'
-                      color='inherit'
-                      width='100%'
-                    >
-                      {text}
-                    </Link>
+                  <ListItemButton component='a' href={links[index]}>
+                    <ListItemText primary={text} />
                   </ListItemButton>
                 </ListItem>
               ))}
