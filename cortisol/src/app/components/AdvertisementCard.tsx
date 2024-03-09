@@ -8,7 +8,7 @@ interface advertisementProps {
     content:string;
 }
 
-export default function Advertisement ({title, content}: advertisementProps) {
+export default function AdvertisementCard ({title, content}: advertisementProps) {
     return (
         <Card>
             <CardContent>
