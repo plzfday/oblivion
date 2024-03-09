@@ -16,7 +16,16 @@ export default function Note() {
   const ref = useRef<MDXEditorMethods>(null);
 
   return (
-    <Sidebar header={'Today I Learned'} sideList={['2024-02-01', '2024-01-31', '2024-01-30', '2024-01-29']}>
+    <Sidebar
+      header={'Today I Learned'}
+      sideList={['2024-02-01', '2024-01-31', '2024-01-30', '2024-01-29']}
+      links={[
+        '/til/2024-02-01',
+        '/til/2024-01-31',
+        '/til/2024-01-30',
+        '/til/2024-01-29',
+      ]}
+    >
       <Navigation />
       <Divider />
       <Box
