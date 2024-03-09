@@ -37,16 +37,11 @@ export default function Note() {
         }}
       >
         <form>
-          <TextField
-            label='Title'
-            name='title'
-            fullWidth
-            margin='normal'
-            required
-          />
-          <Suspense fallback={null}>
-            <EditorComp markdown={''} editorRef={ref} />
-          </Suspense>
+          <Box className={'rounded-md border border-gray-300'}>
+            <Suspense fallback={null}>
+              <EditorComp markdown={''} editorRef={ref} />
+            </Suspense>
+          </Box>
           <TextField
             label='Summary (optional)'
             name='summary'
