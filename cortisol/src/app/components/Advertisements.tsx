@@ -1,8 +1,6 @@
 import React from 'react';
 import AdvertisementCard from "@/app/components/AdvertisementCard";
-import Box from "@mui/material/Box";
 import {Grid, Stack} from "@mui/material";
-import LoginSystemButton from "@/app/components/LoginSystemButton";
 
 export default function Advertisements() {
     return (
@@ -13,7 +11,6 @@ export default function Advertisements() {
             <Grid item xs={8}>
                 <AdvertisementCard title='Ad2' content='Some ads'/>
             </Grid>
-          <LoginSystemButton text={'Log in'}/>
         </Grid>
 
     );
