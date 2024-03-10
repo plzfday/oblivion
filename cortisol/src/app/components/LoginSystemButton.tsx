@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import {type} from "node:os";
 
 export enum LoginButtonTypes {
   login = "Sign In",
@@ -18,7 +19,7 @@ export default function LoginSystemButton({loginButtonType}: loginSystemButtonPr
     } else if (loginButtonType === LoginButtonTypes.register) {
       return "/register";
     } else {
-      return "/"
+      return "/";
     }
   }
   return (

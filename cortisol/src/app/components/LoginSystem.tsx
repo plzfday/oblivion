@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useRouter} from "next/navigation";
-import {useAuthContext} from "@/context/AuthenticationContext";
+import {useAuthContext} from "@/app/context/AuthenticationContext";
 import {useEffect} from "react";
 
 const defaultTheme = createTheme();
@@ -55,9 +55,8 @@ export default function LoginSystem({isRegister}: loginSystemProps) {
       email: data.get('email'),
     };
 
-    const random = await isActionSuccessful(formData);
-    if (random) {
-      setIsSignedIn(true);
+    const actionSuccessful = await isActionSuccessful(formData);
+    if (actionSuccessful) {
       router.push("/");
     }
   };

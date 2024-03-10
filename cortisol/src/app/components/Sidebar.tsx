@@ -75,7 +75,7 @@ interface Props {
   children?: React.ReactNode;
   sideList?: string[];
   links?: string[];
-  isLoggedIn: boolean;
+  isLoggedIn: boolean
 }
 
 const basicLinks = {
