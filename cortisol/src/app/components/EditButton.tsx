@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function EditButton() {
   const [isEditing, setIsEditing] = useState(false);
-  console.log(isEditing);
 
   const handleSave = () => {
     setIsEditing(false);

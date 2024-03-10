@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Button, ButtonGroup, Modal } from '@mui/material';
 import NoteIcon from '@mui/icons-material/Note';
 import BookIcon from '@mui/icons-material/Book';
@@ -5,6 +7,7 @@ import React from 'react';
 import DeleteButton from './DeleteButton';
 import EditButton from './EditButton';
 import ReactCardFlip from 'react-card-flip';
+import { usePathname } from 'next/navigation';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -37,13 +40,20 @@ const flashcard_data = [
   },
 ];
 
-export default function Navigation() {
+type NavigationProps = {
+  handleAddNote: () => void;
+  handleDeleteNote: () => void;
+};
+
+export default function Navigation({ handleAddNote }: NavigationProps) {
   const [open, setOpen] = React.useState(false);
   const [flip, setFlip] = React.useState(false);
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const handleFlip = () => setFlip(!flip);
   const [index, setIndex] = React.useState(0);
+
+  const isNoteDetail = /\/notes\/\d{4}-\d{2}-\d{2}$/.test(usePathname());
 
   const nextIdea = () => {
     if (index < flashcard_data.length - 1) {
@@ -66,18 +76,24 @@ export default function Navigation() {
         variant='outlined'
         aria-label='Basic button group'
       >
-        <Button startIcon={<NoteIcon />}>Add Note </Button>
-        <DeleteButton />
-        <EditButton />
-        <Button startIcon={<BookIcon />} onClick={handleOpen}>
-          Flash Cards
+        <Button startIcon={<NoteIcon />} onClick={handleAddNote}>
+          Add Note{' '}
         </Button>
+        {isNoteDetail && <DeleteButton />}
+        {isNoteDetail && <EditButton />}
+        {isNoteDetail && (
+          <Button startIcon={<BookIcon />} onClick={handleOpen}>
+            Flash Cards
+          </Button>
+        )}
       </ButtonGroup>
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <ReactCardFlip isFlipped={flip} flipDirection='vertical'>
             <div>
-              <p className='text-xl font-bold'>{flashcard_data[index]['question']}</p>
+              <p className='text-xl font-bold'>
+                {flashcard_data[index]['question']}
+              </p>
               <button onClick={handleFlip}>Click to flip</button>
             </div>
 
