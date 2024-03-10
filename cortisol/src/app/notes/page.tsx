@@ -28,7 +28,6 @@ export default function Note() {
       isLoggedIn={true}
     >
       <Navigation />
-      <Divider />
       <Box
         sx={{
           marginTop: 3,

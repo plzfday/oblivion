@@ -15,6 +15,10 @@ import {
   codeMirrorPlugin,
   ChangeCodeMirrorLanguage,
   markdownShortcutPlugin,
+  diffSourcePlugin,
+  DiffSourceToggleWrapper,
+  UndoRedo,
+  BoldItalicUnderlineToggles,
 } from '@mdxeditor/editor';
 import { FC } from 'react';
 
@@ -40,7 +44,7 @@ const Editor: FC<EditorProps> = ({ markdown, editorRef }) => {
         thematicBreakPlugin(),
         linkPlugin(),
         markdownShortcutPlugin(),
-
+        diffSourcePlugin(),
         // the default code block language to insert when the user clicks the "insert code block" button
         codeBlockPlugin({ defaultCodeBlockLanguage: 'js' }),
         codeMirrorPlugin({
@@ -48,21 +52,27 @@ const Editor: FC<EditorProps> = ({ markdown, editorRef }) => {
         }),
         toolbarPlugin({
           toolbarContents: () => (
-            <ConditionalContents
-              options={[
-                {
-                  when: (editor) => editor?.editorType === 'codeblock',
-                  contents: () => <ChangeCodeMirrorLanguage />,
-                },
-                {
-                  fallback: () => (
-                    <>
-                      <InsertCodeBlock />
-                    </>
-                  ),
-                },
-              ]}
-            />
+            <>
+              <DiffSourceToggleWrapper>
+              <UndoRedo />
+              <BoldItalicUnderlineToggles />
+              <ConditionalContents
+                options={[
+                  {
+                    when: (editor) => editor?.editorType === 'codeblock',
+                    contents: () => <ChangeCodeMirrorLanguage />,
+                  },
+                  {
+                    fallback: () => (
+                      <>
+                        <InsertCodeBlock />
+                      </>
+                    ),
+                  },
+                ]}
+              />
+              </DiffSourceToggleWrapper>
+            </>
           ),
         }),
       ]}
