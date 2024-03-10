@@ -1,12 +1,22 @@
-import { Box, TextField } from '@mui/material';
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import { Box, TextField } from "@mui/material";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 
-const EditorComp = dynamic(() => import('../../components/Editor'), {
+const EditorComp = dynamic(() => import("../../components/Editor"), {
   ssr: false,
 });
 
-export default function NoteDetail() {
+type NoteDetailProps = {
+  setContent: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  setSummary: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  setPk: (pk: string) => void;
+};
+
+export default function NoteDetail({
+  setContent,
+  setSummary,
+  setPk,
+}: NoteDetailProps) {
   return (
     <Box
       sx={{
@@ -17,18 +27,19 @@ export default function NoteDetail() {
       }}
     >
       <form>
-        <Box className={'rounded-md border border-gray-300'}>
+        <Box className={"rounded-md border border-gray-300"}>
           <Suspense fallback={null}>
-            <EditorComp markdown={''} />
+            <EditorComp markdown={""} />
           </Suspense>
         </Box>
         <TextField
-          label='Summary (optional)'
-          name='summary'
+          label="Summary (optional)"
+          name="summary"
           multiline
           fullWidth
           rows={2}
-          margin='normal'
+          margin="normal"
+          onChange={setSummary}
         />
       </form>
     </Box>
