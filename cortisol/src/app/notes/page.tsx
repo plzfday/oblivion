@@ -27,7 +27,6 @@ export default function Note() {
       ]}
     >
       <Navigation />
-      <Divider />
       <Box
         sx={{
           marginTop: 3,
