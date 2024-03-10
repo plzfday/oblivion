@@ -28,12 +28,13 @@ export default function StatisticsModal() {
   }
 
   useEffect(()=> {
-    fetchStatistics();
+    // fetchStatistics();
+    setStatistics({
+        "API Development": 4,
+        "Version Control": 3,
+        "Testing": 5
+    }) // fake data in place of fetch statistics
   }, [])
-
-  useEffect(() => {
-    console.log(statistics);
-  }, [statistics]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,16 +52,14 @@ export default function StatisticsModal() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Category Frequency
           </Typography>
-          <BarChart
-            xAxis={[
-              { scaleType: "band", data: ["group A", "group B", "group C"] },
-            ]}
-            series={[
-              { data: [4, 3, 5] },
-            ]}
-            width={500}
-            height={300}
-          />
+          {(statistics && Object.keys(statistics).length > 0) && (
+            <BarChart
+              xAxis={[{ scaleType: 'band', data: Object.keys(statistics) }]}
+              series={[{ data: Object.values(statistics) }]}
+              width={500}
+              height={300}
+            />
+          )}
         </Box>
       </Modal>
     </Box>
