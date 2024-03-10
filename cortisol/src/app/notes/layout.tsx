@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import Navigation from '../components/Navigation';
 import { useEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
+import { UserProvider, useUserState } from '../context/AuthContext';
 
 const getNotes = async () => {
   return ['2024-02-01', '2024-01-31', '2024-01-30', '2024-01-29'];
@@ -15,6 +16,7 @@ type NoteProps = {
 
 export default function Note({ children }: NoteProps) {
   const [notes, setNotes] = useState<string[]>([]);
+  const { user } = useUserState();
 
   useEffect(() => {
     getNotes().then((notes) => {
@@ -30,14 +32,14 @@ export default function Note({ children }: NoteProps) {
   };
 
   return (
-    <Sidebar
-      header={'Today I Learned'}
-      sideList={notes}
-      links={notes.map((x) => '/notes/' + x)}
-      isLoggedIn={true}
-    >
-      <Navigation handleAddNote={handleAddNote} />
-      {children}
-    </Sidebar>
+      <Sidebar
+        header={'Today I Learned'}
+        sideList={notes}
+        links={notes.map((x) => '/notes/' + x)}
+        isLoggedIn={Boolean(user)}
+      >
+        <Navigation handleAddNote={handleAddNote} />
+        {children}
+      </Sidebar>
   );
 }
