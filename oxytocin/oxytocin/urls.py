@@ -24,5 +24,5 @@ urlpatterns = [
     path("api/signup", create_user),
     path("api/login", login_view),
     path("api/logout", logout_view),
-    path("api/notes/", include("notes.urls")),
+    path("api/notes", include("notes.urls")),
 ]
