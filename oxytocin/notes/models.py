@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Notes(models.Model):
-    content = models.TextField()
+    content = models.TextField(blank=True)
     summary = models.TextField(blank=True)
     category = models.TextField(max_length=255, blank=True)
     date_last_modified = models.DateTimeField(auto_now=True)
