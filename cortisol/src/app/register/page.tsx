@@ -1,12 +1,9 @@
 'use client';
 
-import {Box} from "@mui/material";
-import LoginSystemBox from "@/app/components/LoginSystemBox";
+import LoginSystem from "@/app/components/LoginSystem";
 
-export default function Login() {
+export default function Register() {
   return (
-      <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>
-        <LoginSystemBox isRegister={true}/>
-      </Box>
-  );
+      <LoginSystem isRegister={true}/>
+  )
 }

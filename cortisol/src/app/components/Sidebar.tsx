@@ -1,11 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import {styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -16,9 +16,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { Link } from '@mui/material';
-import LoginSystemButton from "@/app/components/LoginSystemButton";
+import {Link} from '@mui/material';
+import LoginSystemButton, {LoginButtonTypes} from "@/app/components/LoginSystemButton";
 
 const drawerWidth = 240;
 
@@ -119,10 +118,10 @@ export default function PersistentDrawerLeft({
           <Typography variant='h6' noWrap component='div'>
             {header}
           </Typography>
-          {isLoggedIn ? <LoginSystemButton text='Log Out'/> :
+          {isLoggedIn ? <LoginSystemButton loginButtonType={LoginButtonTypes.logout}/> :
               <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
-                <LoginSystemButton text='Register'/>
-                <LoginSystemButton text='Log In'/>
+                <LoginSystemButton loginButtonType={LoginButtonTypes.register}/>
+                <LoginSystemButton loginButtonType={LoginButtonTypes.login}/>
               </Box>}
         </Toolbar>
       </AppBar>
