@@ -1,9 +1,7 @@
 'use client';
 
-import LoginSystem from "@/app/components/LoginSystem";
+import LoginSystem from '@/app/components/LoginSystem';
 
 export default function Login() {
-  return (
-      <LoginSystem isRegister={false}/>
-  )
+  return <LoginSystem isRegister={false} />;
 }

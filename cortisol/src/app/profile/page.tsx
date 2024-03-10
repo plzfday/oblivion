@@ -4,9 +4,9 @@ import Achievement from "@/app/components/Achievement";
 
 export default function Note() {
   return (
-    <Sidebar header={'User Profile'} sideList={['Home', 'Notes', 'Flashcards', 'Profile']}>
-        <Achievement/>
-        <DateCalendarValue/>
+    <Sidebar header={'User Profile'} isLoggedIn={true}>
+       <Achievement/>
+      <DateCalendarValue />
     </Sidebar>
   );
 }
