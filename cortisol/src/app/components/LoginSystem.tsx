@@ -17,16 +17,73 @@ interface loginSystemProps {
   isRegister: boolean
 }
 
+interface formData {
+  username: FormDataEntryValue | null;
+  email?: FormDataEntryValue | null;
+  password: FormDataEntryValue | null;
+}
+
 export default function LoginSystem({isRegister}: loginSystemProps) {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+  async function fetchLoginDetails(formDataRegister: formData, formDataLogin: formData) {
+    const apiUrl = isRegister ? 'http://127.0.0.1:8000/api/signup' : 'http://127.0.0.1:8000/api/login';
+  
+    try {
+      if (isRegister) {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formDataRegister),
+        });
+
+        if (response.status === 200) {
+          const responseData = await response.json();
+          console.log(responseData.message);
+        } else {
+          const responseData = await response.json();
+          console.log(responseData.message);
+        }
+      } else {
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formDataLogin),
+        });
+
+        if (response.status === 200) {
+          const responseData = await response.json();
+          console.log(responseData.message);
+        } else {
+          const responseData = await response.json();
+          console.log(responseData.message);
+        }
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
+    const formDataRegister = {
+      username: data.get('username'),
       password: data.get('password'),
-    });
-  };
+      email: data.get('email'),
+    };
+    const formDataLogin = {
+      username: data.get('username'),
+      password: data.get('password'),
+    };
 
+    const random = await fetchLoginDetails(formDataRegister, formDataLogin);
+  
+  };
+  
   return (
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="xs">
