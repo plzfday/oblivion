@@ -16,7 +16,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import {Link} from '@mui/material';
 import LoginSystemButton, {LoginButtonTypes} from "@/app/components/LoginSystemButton";
 
 const drawerWidth = 240;
