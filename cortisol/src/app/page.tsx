@@ -4,7 +4,7 @@ import Advertisements from '@/app/components/Advertisements';
 export default function Home() {
   return (
     <div>
-      <Sidebar header='Home'>
+      <Sidebar header='Home' isLoggedIn={false}>
         <Advertisements />
       </Sidebar>
     </div>

@@ -25,6 +25,7 @@ export default function Note() {
         '/til/2024-01-30',
         '/til/2024-01-29',
       ]}
+      isLoggedIn={true}
     >
       <Navigation />
       <Divider />

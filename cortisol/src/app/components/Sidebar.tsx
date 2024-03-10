@@ -1,11 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import {styled, useTheme} from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -16,8 +16,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { Link } from '@mui/material';
+import LoginSystemButton, {LoginButtonTypes} from "@/app/components/LoginSystemButton";
 
 const drawerWidth = 240;
 
@@ -75,6 +74,7 @@ interface Props {
   children?: React.ReactNode;
   sideList?: string[];
   links?: string[];
+  isLoggedIn: boolean;
 }
 
 const basicLinks = {
@@ -87,6 +87,7 @@ export default function PersistentDrawerLeft({
   sideList,
   children,
   links,
+  isLoggedIn
 }: Props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -103,7 +104,7 @@ export default function PersistentDrawerLeft({
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position='fixed' open={open}>
-        <Toolbar>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -116,6 +117,11 @@ export default function PersistentDrawerLeft({
           <Typography variant='h6' noWrap component='div'>
             {header}
           </Typography>
+          {isLoggedIn ? <LoginSystemButton loginButtonType={LoginButtonTypes.logout}/> :
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: '8px' }}>
+                <LoginSystemButton loginButtonType={LoginButtonTypes.register}/>
+                <LoginSystemButton loginButtonType={LoginButtonTypes.login}/>
+              </Box>}
         </Toolbar>
       </AppBar>
       <Drawer

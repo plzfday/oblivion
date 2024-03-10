@@ -1,6 +1,5 @@
 import React from 'react';
 import AdvertisementCard from "@/app/components/AdvertisementCard";
-import Box from "@mui/material/Box";
 import {Grid, Stack} from "@mui/material";
 
 export default function Advertisements() {
