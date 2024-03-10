@@ -7,7 +7,7 @@ import ApiIcon from '@mui/icons-material/Api';
 
 export default function Achievement() {
     return (
-        <Box border={1} borderRadius={10} borderColor="primary.main" p={2}>
+        <Box border={1} borderColor="primary.main" p={2}>
             <Typography variant='body2'>
                 Achievements:
             </Typography>
